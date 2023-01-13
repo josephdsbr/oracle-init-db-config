@@ -1,0 +1,26 @@
+version: "3"
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    restart: "no"
+    ports:
+      - 15672:15672
+      - 5672:5672
+  orcldb:
+    container_name: orcldb
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - 1521:1521
+      - 5500:5500
+    environment:
+      DB_SID: xe
+      DB_MEMORY: 4GB
+    volumes:
+      - ./startup/scripts:/home/oracle/setup/custom_scripts
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    environment:
+      ALLOW_EMPTY_PASSWORD: "YES"
