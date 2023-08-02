@@ -19,7 +19,7 @@ services:
     volumes:
       - ./startup/scripts:/home/oracle/setup/custom_scripts
   mongo:
-    image: mongo
+    image: mongo:4.4.6
     ports:
     - 27017:27017
     volumes:
